@@ -8,5 +8,7 @@ class HelloWorld
     { 
         System.out.println("Hello Hello, World"); 
 
+        //Adding new line
+        System.out.println("Welcome to Git");
     } 
 }
