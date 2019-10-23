@@ -1,0 +1,239 @@
+Session 10 took on Oct15
+
+----------------
+
+Branches
+
+1.Feature branch
+2.
+
+navigate to new directory /root and download the code from central repository
+
+[root@ip-172-31-90-8 ~]# git clone https://github.com/NeerajaAWS/SampleCode.git
+Cloning into 'SampleCode'...
+remote: Enumerating objects: 17, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (14/14), done.
+remote: Total 17 (delta 3), reused 11 (delta 2), pack-reused 0
+Unpacking objects: 100% (17/17), done.
+[root@ip-172-31-90-8 ~]# 
+
+[root@ip-172-31-90-8 SampleCode]# git log --oneline
+9eccdf6 (HEAD -> master, origin/master, origin/HEAD) Add files via upload
+41b9dd5 Restored files from commit:b2542c8
+c1d523a Added new lines to HelloWorld.java
+aa6f31b Updated HelloWorld and added Goodbye
+b2542c8 This is a new code example
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+[root@ip-172-31-90-8 SampleCode]# git remote -v
+origin  https://github.com/NeerajaAWS/SampleCode.git (fetch)
+origin  https://github.com/NeerajaAWS/SampleCode.git (push)
+[root@ip-172-31-90-8 SampleCode]#
+
+
+checking branch
+[root@ip-172-31-90-8 SampleCode]# git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+[root@ip-172-31-90-8 SampleCode]#
+
+
+Now lets create a feature branch and switch to it
+[root@ip-172-31-90-8 SampleCode]# git branch feature/facebook
+[root@ip-172-31-90-8 SampleCode]# git branch -a
+  feature/facebook
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+[root@ip-172-31-90-8 SampleCode]# git checkout feature/facebook
+Switched to branch 'feature/facebook'
+[root@ip-172-31-90-8 SampleCode]# git branch -a
+* feature/facebook
+  master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+[root@ip-172-31-90-8 SampleCode]#
+
+
+Question:What is the difference between untracked file and modified file git?
+Ans:
+Untracked file is a new file created in workspace
+Modified file is a file thats been modified in staging area
+
+note:Command used to add and commit at-time will work on only modified file but not on untracked files
+
+[root@ip-172-31-90-8 SampleCode]# vi HelloWorld.java
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch feature/facebook
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   HelloWorld.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@ip-172-31-90-8 SampleCode]# git commit -a -m "Adding some new code for mail feature"
+[feature/facebook c3ebf68] Adding some new code for mail feature
+ 1 file changed, 1 insertion(+)
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch feature/facebook
+nothing to commit, working tree clean
+[root@ip-172-31-90-8 SampleCode]#
+
+
+Pushing code from local branch to central new branch
+----------------------------------------------
+
+first find out the remote location to the current branch
+ [root@ip-172-31-90-8 SampleCode]#  git remote -v
+ origin  https://github.com/NeerajaAWS/SampleCode.git (fetch)
+ origin  https://github.com/NeerajaAWS/SampleCode.git (push)
+ [root@ip-172-31-90-8 SampleCode]# git push origin feature/facebook
+ Username for 'https://github.com': NeerajaAWS
+ Password for 'https://NeerajaAWS@github.com':
+ Enumerating objects: 5, done.
+ Counting objects: 100% (5/5), done.
+ Compressing objects: 100% (3/3), done.
+ Writing objects: 100% (3/3), 332 bytes | 332.00 KiB/s, done.
+ Total 3 (delta 2), reused 0 (delta 0)
+ remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+ remote:
+ remote: Create a pull request for 'feature/facebook' on GitHub by visiting:
+ remote:      https://github.com/NeerajaAWS/SampleCode/pull/new/feature/facebook
+ remote:
+ To https://github.com/NeerajaAWS/SampleCode.git
+  * [new branch]      feature/facebook -> feature/facebook
+ [root@ip-172-31-90-8 SampleCode]#
+
+
+
+Merging
+-------
+
+Note that whenever or whoever dowloading a code or script they will be downloading it from the master branch not from any other branches
+
+so inorder to merge the updated code in branches to master branch
+
+
+Pull request is also a merging process but it's a merge request with approval process(control authority)
+
+
+Branch protection rules:
+Define branch protection rules to disable force pushing, prevent branches from being deleted, and optionally require status checks before merging
+
+options:
+1.Require pull request reviews before merging
+2.Require status checks to pass before merging
+3.Require signed commits
+4.Include administrators
+
+
+GUI
+once we set the branching rule,create a pull request and once it is approved we can see changes are updated in master
+
+CLI
+to merge a branch we need to switch to destination branch(here in this case master)and run the below command
+#git checkout master
+#git merge feature/facebook
+
+
+Deleting a branch
+-----------------
+
+note:Never run #git push -f ----- this will overwrite your central repository with local(you may loose your job for this mistake)
+
+Now coming to deleting a branch
+
+first we need to delete branch in local
+[root@ip-172-31-90-8 SampleCode]# git branch -d feature/facebook
+error: Cannot delete branch 'feature/facebook' checked out at '/root/SampleCode'
+[root@ip-172-31-90-8 SampleCode]#
+
+here it fails because we are currently in the same brach.so we are switching to master
+
+[root@ip-172-31-90-8 SampleCode]# git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+[root@ip-172-31-90-8 SampleCode]# git branch -a
+  feature/facebook
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/feature/facebook
+  remotes/origin/master
+[root@ip-172-31-90-8 SampleCode]# git branch -d feature/facebook
+error: The branch 'feature/facebook' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D feature/facebook'.
+[root@ip-172-31-90-8 SampleCode]# git branch -D feature/facebook
+Deleted branch feature/facebook (was c3ebf68).
+[root@ip-172-31-90-8 SampleCode]#
+
+
+branch deleted locally
+
+need to delete in repository too
+
+[root@ip-172-31-90-8 SampleCode]# git push -d origin feature/facebook
+Username for 'https://github.com': NeerajaAWS
+Password for 'https://NeerajaAWS@github.com':
+To https://github.com/NeerajaAWS/SampleCode.git
+ - [deleted]         feature/facebook
+[root@ip-172-31-90-8 SampleCode]#
+
+
+
+
+
+
+-----------------------------------
+Git workflow
+-----------------------------------
+
+Took image to devops album
+
+also look at git cherry pick example
+
+
+How to reset a latest commit(Meeans how to delete latest commit)
+---------------------------------------------------------------
+[root@ip-172-31-90-8 SampleCode]# git log --oneline
+9eccdf6 (HEAD -> master, origin/master, origin/HEAD) Add files via upload
+41b9dd5 Restored files from commit:b2542c8
+c1d523a Added new lines to HelloWorld.java
+aa6f31b Updated HelloWorld and added Goodbye
+b2542c8 This is a new code example
+[root@ip-172-31-90-8 SampleCode]# ls -ltra
+total 20
+dr-xr-x---. 4 root root  185 Oct 23 13:28 ..
+-rw-r--r--. 1 root root  472 Oct 23 13:28 NeerajaAWS_publicKey
+-rw-r--r--. 1 root root 1464 Oct 23 13:28 NeerajaAWS_privatekey.ppk
+-rw-r--r--. 1 root root 1692 Oct 23 13:28 NeerajaAWS.pem
+-rw-r--r--. 1 root root  161 Oct 23 13:28 GoodBye.java
+drwxr-xr-x. 3 root root  144 Oct 23 14:21 .
+-rw-r--r--. 1 root root  302 Oct 23 14:21 HelloWorld.java
+drwxr-xr-x. 8 root root  185 Oct 23 14:24 .git
+[root@ip-172-31-90-8 SampleCode]# git reset --soft HEAD^
+[root@ip-172-31-90-8 SampleCode]# git log --oneline
+41b9dd5 (HEAD -> master) Restored files from commit:b2542c8
+c1d523a Added new lines to HelloWorld.java
+aa6f31b Updated HelloWorld and added Goodbye
+b2542c8 This is a new code example
+[root@ip-172-31-90-8 SampleCode]# 
+
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   NeerajaAWS.pem
+        new file:   NeerajaAWS_privatekey.ppk
+        new file:   NeerajaAWS_publicKey
+
+[root@ip-172-31-90-8 SampleCode]#

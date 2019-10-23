@@ -1,0 +1,36 @@
+Session-took on Oct 17
+
+Maven
+----
+It can be downloaded from maven.apache.org
+
+
+Maven is dependent on jdk for two reasons
+1.Maven requires java to compile a code or package etc 
+2.Maven itself is written in java
+
+What is the latest version of java?
+1.13
+
+Site for openjdk
+http://openjdk.java.net/install/
+
+yum install java-1.8.0-openjdk-devel -y
+
+Note:This is open java,learn how to install oracle java
+
+both are from oracle corporation bu the only difference is we have support for Oracle java but not for open java
+
+After java lets install apache-maven from http://maven.apache.org/download.cgi
+
+just download it to /opt no need to install since it is a runtime binary files(means you can extrat it and use it)
+
+path setup done
+
+stopped at pulling sample code
+
+
+
+
+
+
