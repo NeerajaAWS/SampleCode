@@ -1,5 +1,7 @@
 Session-took on Oct 17
 
+Host used----NeerajaAWS-Maven
+
 Maven
 ----
 It can be downloaded from maven.apache.org
@@ -203,6 +205,196 @@ drwxr-xr-x. 4 root root   70 Oct 24 05:02 .
 [root@ip-172-31-87-126 Maven-Sample-code]#
 
 Lets come out of it and download a new code
+[root@ip-172-31-87-126 opt]# git clone https://github.com/NeerajaAWS/PetClinic.git
+Cloning into 'PetClinic'...
+Username for 'https://github.com': NeerajaAWS
+Password for 'https://NeerajaAWS@github.com':
+remote: Enumerating objects: 7777, done.
+remote: Counting objects: 100% (7777/7777), done.
+remote: Compressing objects: 100% (2977/2977), done.
+remote: Total 7777 (delta 3916), reused 7777 (delta 3916), pack-reused 0
+Receiving objects: 100% (7777/7777), 6.74 MiB | 27.18 MiB/s, done.
+Resolving deltas: 100% (3916/3916), done.
+[root@ip-172-31-87-126 opt]# ls -ltra
+total 8936
+dr-xr-xr-x. 18 root root     236 Jun 18 17:10 ..
+-rw-r--r--.  1 root root 9142315 Oct 23 15:48 apache-maven-3.6.2-bin.tar.gz
+drwxr-xr-x.  6 root root      99 Oct 23 15:51 apache-maven-3.6.2
+drwxr-xr-x.  4 root root      70 Oct 24 05:02 Maven-Sample-code
+drwxr-xr-x.  5 root root     111 Oct 24 05:25 .
+drwxr-xr-x.  5 root root    4096 Oct 24 05:26 PetClinic
+[root@ip-172-31-87-126 opt]# cd PetClinic/
+[root@ip-172-31-87-126 PetClinic]# ls -ltra
+total 92
+drwxr-xr-x. 5 root root   111 Oct 24 05:25 ..
+-rw-r--r--. 1 root root    31 Oct 24 05:26 .travis.yml
+-rw-r--r--. 1 root root   726 Oct 24 05:26 .springBeans
+drwxr-xr-x. 3 root root    21 Oct 24 05:26 .mvn
+-rw-r--r--. 1 root root  1273 Oct 24 05:26 Jenkinsfile
+-rw-r--r--. 1 root root    61 Oct 24 05:26 .gitignore
+-rw-r--r--. 1 root root   192 Oct 24 05:26 .editorconfig
+-rw-r--r--. 1 root root    45 Oct 24 05:26 .bowerrc
+-rwxr-xr-x. 1 root root   332 Oct 24 05:26 sonar-project.properties
+-rw-r--r--. 1 root root   168 Oct 24 05:26 Readme.txt
+-rw-r--r--. 1 root root  8518 Oct 24 05:26 readme.md
+-rw-r--r--. 1 root root 17112 Oct 24 05:26 pom.xml
+-rw-r--r--. 1 root root  5186 Oct 24 05:26 mvnw.cmd
+-rwxr-xr-x. 1 root root  7112 Oct 24 05:26 mvnw
+-rw-r--r--. 1 root root  1651 Oct 24 05:26 Jenkinsfile-1
+-rw-r--r--. 1 root root   134 Oct 24 05:26 bower.json
+drwxr-xr-x. 5 root root  4096 Oct 24 05:26 .
+drwxr-xr-x. 4 root root    30 Oct 24 05:26 src
+drwxr-xr-x. 8 root root   163 Oct 24 05:26 .git
+[root@ip-172-31-87-126 PetClinic]# cd ..
+[root@ip-172-31-87-126 opt]# git status
+fatal: not a git repository (or any of the parent directories): .git
+[root@ip-172-31-87-126 opt]# cd PetClinic/
+[root@ip-172-31-87-126 PetClinic]# git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+[root@ip-172-31-87-126 PetClinic]# git branch -a
+* master
+  remotes/origin/Cobertura
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/Spring-Security
+  remotes/origin/angularjs
+  remotes/origin/javaconfig
+  remotes/origin/master
+[root@ip-172-31-87-126 PetClinic]#
+
+
+Building the war file
+[root@ip-172-31-87-126 PetClinic]#mvn package
+
+.
+.
+.
+Downloaded from central: https://repo.maven.apache.org/maven2/com/thoughtworks/xstream/xstream/1.4.3/xstream-1.4.3.jar (482 kB at 2.5 MB/s)
+[INFO] Packaging webapp
+[INFO] Assembling webapp [spring-petclinic] in [/opt/PetClinic/target/spring-petclinic-4.2.5-SNAPSHOT]
+[INFO] Processing war project
+[INFO] Copying webapp resources [/opt/PetClinic/src/main/webapp]
+[INFO] Webapp assembled in [756 msecs]
+[INFO] Building war: /opt/PetClinic/target/petclinic.war
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  34.807 s
+[INFO] Finished at: 2019-10-24T05:28:48Z
+[INFO] ------------------------------------------------------------------------
+[root@ip-172-31-87-126 PetClinic]#
+
+-------------------
+Intervie question:
+------------------
+What is needed to run the war file
+ans:we need a application server to run it or for runtime(Example apache(tomcat),web logic,websphere etc)
+
+
+Downloading Apache-tomcat
+
+[root@ip-172-31-87-126 opt]# curl -o apache-tomcat-8.5.47.tar.gz http://mirrors.ocf.berkeley.edu/apache/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  9.7M  100  9.7M    0     0  5989k      0  0:00:01  0:00:01 --:--:-- 5985k
+[root@ip-172-31-87-126 opt]# ls -ltra
+total 18964
+dr-xr-xr-x. 18 root root      236 Jun 18 17:10 ..
+-rw-r--r--.  1 root root  9142315 Oct 23 15:48 apache-maven-3.6.2-bin.tar.gz
+drwxr-xr-x.  6 root root       99 Oct 23 15:51 apache-maven-3.6.2
+drwxr-xr-x.  4 root root       70 Oct 24 05:02 Maven-Sample-code
+drwxr-xr-x.  6 root root     4096 Oct 24 05:28 PetClinic
+drwxr-xr-x.  5 root root      146 Oct 24 05:35 .
+-rw-r--r--.  1 root root 10267082 Oct 24 05:35 apache-tomcat-8.5.47.tar.gz
+[root@ip-172-31-87-126 opt]# tar -xvf apache-tomcat-8.5.47.tar.gz
+apache-tomcat-8.5.47/conf/
+apache-tomcat-8.5.47/conf/catalina.policy
+apache-tomcat-8.5.47/conf/catalina.properties
+.
+.
+.
+[root@ip-172-31-87-126 opt]# cd apache-tomcat-8.5.47/bin/
+[root@ip-172-31-87-126 bin]# ls -ltra
+total 864
+-rwxr-x---. 1 root root   1908 Oct  7 13:31 version.sh
+-rw-r-----. 1 root root   2026 Oct  7 13:31 version.bat
+.
+.
+drwxr-xr-x. 9 root root    220 Oct 24 05:35 ..
+drwxr-x---. 2 root root   4096 Oct 24 05:35 .
+[root@ip-172-31-87-126 bin]# ./version.sh
+Using CATALINA_BASE:   /opt/apache-tomcat-8.5.47
+Using CATALINA_HOME:   /opt/apache-tomcat-8.5.47
+Using CATALINA_TMPDIR: /opt/apache-tomcat-8.5.47/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /opt/apache-tomcat-8.5.47/bin/bootstrap.jar:/opt/apache-tomcat-8.5.47/bin/tomcat-juli.jar
+Server version: Apache Tomcat/8.5.47
+Server built:   Oct 7 2019 13:30:46 UTC
+Server number:  8.5.47.0
+OS Name:        Linux
+OS Version:     4.18.0-80.4.2.el8_0.x86_64
+Architecture:   amd64
+JVM Version:    1.8.0_232-b09
+JVM Vendor:     Oracle Corporation
+[root@ip-172-31-87-126 bin]#
+
+
+Make sure you have java installed
+
+Starting Apache-Tomcat
+
+[root@ip-172-31-87-126 bin]# ./startup.sh
+Using CATALINA_BASE:   /opt/apache-tomcat-8.5.47
+Using CATALINA_HOME:   /opt/apache-tomcat-8.5.47
+Using CATALINA_TMPDIR: /opt/apache-tomcat-8.5.47/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /opt/apache-tomcat-8.5.47/bin/bootstrap.jar:/opt/apache-tomcat-8.5.47/bin/tomcat-juli.jar
+Tomcat started.
+[root@ip-172-31-87-126 bin]# pwd
+/opt/apache-tomcat-8.5.47/bin
+[root@ip-172-31-87-126 bin]#
+
+you can check it it is up using ps -ef or through internet via hostname:8080
+
+Now copy your .war file previously build to webapps directory
+
+[root@ip-172-31-87-126 webapps]# pwd
+/opt/apache-tomcat-8.5.47/webapps
+[root@ip-172-31-87-126 webapps]# cp /opt/PetClinic/target/
+classes/                         generated-test-sources/          maven-status/                    spring-petclinic-4.2.5-SNAPSHOT/ test-classes/
+generated-sources/               maven-archiver/                  petclinic.war                    surefire-reports/
+[root@ip-172-31-87-126 webapps]# cp /opt/PetClinic/target/petclinic.war .
+[root@ip-172-31-87-126 webapps]# cd ..
+[root@ip-172-31-87-126 apache-tomcat-8.5.47]# cd bin/
+[root@ip-172-31-87-126 bin]#
+
+and restart tomcat
+[root@ip-172-31-87-126 bin]# ./shutdown.sh
+Using CATALINA_BASE:   /opt/apache-tomcat-8.5.47
+Using CATALINA_HOME:   /opt/apache-tomcat-8.5.47
+Using CATALINA_TMPDIR: /opt/apache-tomcat-8.5.47/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /opt/apache-tomcat-8.5.47/bin/bootstrap.jar:/opt/apache-tomcat-8.5.47/bin/tomcat-juli.jar
+[root@ip-172-31-87-126 bin]# ./startup.sh
+Using CATALINA_BASE:   /opt/apache-tomcat-8.5.47
+Using CATALINA_HOME:   /opt/apache-tomcat-8.5.47
+Using CATALINA_TMPDIR: /opt/apache-tomcat-8.5.47/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /opt/apache-tomcat-8.5.47/bin/bootstrap.jar:/opt/apache-tomcat-8.5.47/bin/tomcat-juli.jar
+Tomcat started.
+[root@ip-172-31-87-126 bin]#
+
+Now to check this add a ContextRoot to the url
+
+Note:ContextRoot is again a concept we need to be aware in web knowlegde
+
+http://ec2-3-86-218-219.compute-1.amazonaws.com:8080/petclinic/
+------------------------------------------------------------------------------------------------------------------------------
+COMPLETED
+------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
