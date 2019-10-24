@@ -27,7 +27,89 @@ just download it to /opt no need to install since it is a runtime binary files(m
 
 path setup done
 
-stopped at pulling sample code
+Maven sample code copied from gk repository to my central repository and downloaded locally
+
+[root@ip-172-31-87-126 opt]# git clone https://github.com/NeerajaAWS/Maven-Sample-code.git
+Cloning into 'Maven-Sample-code'...
+Username for 'https://github.com': NeerajaAWS
+Password for 'https://NeerajaAWS@github.com':
+remote: Enumerating objects: 17, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (9/9), done.
+remote: Total 17 (delta 0), reused 17 (delta 0), pack-reused 0
+Unpacking objects: 100% (17/17), done.
+[root@ip-172-31-87-126 opt]# ls -ltra
+total 8932
+dr-xr-xr-x. 18 root root     236 Jun 18 17:10 ..
+-rw-r--r--.  1 root root 9142315 Oct 23 15:48 apache-maven-3.6.2-bin.tar.gz
+drwxr-xr-x.  6 root root      99 Oct 23 15:51 apache-maven-3.6.2
+drwxr-xr-x.  4 root root      94 Oct 24 03:44 .
+drwxr-xr-x.  4 root root      70 Oct 24 03:44 Maven-Sample-code
+[root@ip-172-31-87-126 opt]# cd Maven-Sample-code/
+[root@ip-172-31-87-126 Maven-Sample-code]#
+
+tree is the command that shows the structure of the current project
+
+[root@ip-172-31-87-126 Maven-Sample-code]# tree
+.
+├── Maven_Commands.txt
+├── pom.xml
+└── src
+    ├── main
+    │   └── java
+    │       └── com
+    │           └── flipkart
+    │               └── App.java
+    └── test
+        └── java
+            └── com
+                └── flipkart
+                    └── AppTest.java
+
+9 directories, 4 files
+[root@ip-172-31-87-126 Maven-Sample-code]#
+
+
+below is the process to compile a source code
+
+[root@ip-172-31-87-126 Maven-Sample-code]# mvn compile
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ---------------------< com.flipkart:customercare >----------------------
+[INFO] Building customercare 0.1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+Downloading fro
+
+
+Below is the error we get it when we run compile form a directory without pom.xml
+
+[root@ip-172-31-87-126 Maven-Sample-code]# ls -ltra
+total 8
+drwxr-xr-x. 4 root root   94 Oct 24 03:44 ..
+-rw-r--r--. 1 root root 2653 Oct 24 03:44 pom.xml
+-rw-r--r--. 1 root root 2517 Oct 24 03:44 Maven_Commands.txt
+drwxr-xr-x. 4 root root   30 Oct 24 03:44 src
+drwxr-xr-x. 8 root root  163 Oct 24 03:44 .git
+drwxr-xr-x. 5 root root   84 Oct 24 04:11 .
+drwxr-xr-x. 5 root root   66 Oct 24 04:11 target
+[root@ip-172-31-87-126 Maven-Sample-code]# cd ..
+[root@ip-172-31-87-126 opt]# mvn compile
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.187 s
+[INFO] Finished at: 2019-10-24T04:24:19Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] The goal you specified requires a project to execute but there is no POM                                                                                        in this directory (/opt). Please verify you invoked Maven from the correct dire                                                                                       ctory. -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e swit                                                                                       ch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please rea                                                                                       d the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MissingProject                                                                                       Exception
+[root@ip-172-31-87-126 opt]#
+
 
 
 
