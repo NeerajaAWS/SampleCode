@@ -1,0 +1,13 @@
+Github
+
+
+Adding a centralized repository to the local respository
+
+To check if there is any central repository added
+#git remote -v
+
+To add a remote central repository
+#git remote add <name you wan to put to the repository(Origin/Central)> <url of repository>
+
+To see list of branches
+#git branch -a

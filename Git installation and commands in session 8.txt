@@ -1,0 +1,197 @@
+Git installation and commands
+-------------------------------
+https://git-scm.com/download/linux
+
+#yum install git
+
+to check if it is installed or not
+#rpm -qa|grep git
+
+#git --version
+
+#git config --global user.name "Sudhakar"
+
+#git config --global user.emial "neerajavanapala@gmail.com
+
+#git config --global --list
+
+#git config --global color.ui "auto"
+
+Building a sample application 
+
+[root@ip-172-31-90-8 SampleCode]# git init .
+Initialized empty Git repository in /opt/SampleCode/.git/
+[root@ip-172-31-90-8 SampleCode]#
+
+.git  is the version history or version database,means it stores all the modifiaction and all
+
+[root@ip-172-31-90-8 SampleCode]# cat HelloWorld.java
+/* This is a simple Java program.
+   FileName : "HelloWorld.java". */
+class HelloWorld
+{
+    // Your program begins with a call to main().
+    // Prints "Hello, World" to the terminal window.
+    public static void main(String args[])
+    {
+        System.out.println("Hello, World");
+    }
+}
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        HelloWorld.java
+
+nothing added to commit but untracked files present (use "git add" to track)
+[root@ip-172-31-90-8 SampleCode]#
+
+above is an example of working directory
+
+Moving this to staging area
+[root@ip-172-31-90-8 SampleCode]# git add HelloWorld.java
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   HelloWorld.java
+
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   HelloWorld.java
+
+[root@ip-172-31-90-8 SampleCode]#
+
+Pushing to local respository
+[root@ip-172-31-90-8 SampleCode]# git commit -m "This is a new code example"
+[master (root-commit) b2542c8] This is a new code example
+ 1 file changed, 11 insertions(+)
+ create mode 100644 HelloWorld.java
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+nothing to commit, working tree clean
+[root@ip-172-31-90-8 SampleCode]#
+
+
+
+Need to prepare git lifecycle
+
+Working directory--------------->Staging area--------------->Repository(.git folder)-------------> Remote repo(remote)
+will have no track files	 git add <filename>	     Write operation to localrepository		
+New file added or Modified	 Changes to be committed:    	
+
+
+Note:We can select specific files to be added to staging area but we can't select specific files to commit
+Whole staging area will be committed
+
+
+Is there a way to umcommit a change?
+No
+
+Is there a way to bring back a file from staging to unstaging?
+Yes
+#Using git reset HEAD <Staged file name>
+
+Example:
+---------
+[root@ip-172-31-90-8 SampleCode]# git diff
+[root@ip-172-31-90-8 SampleCode]# git diff --staged
+diff --git a/HelloWorld.java b/HelloWorld.java
+index 31f484e..d3f16d4 100644
+--- a/HelloWorld.java
++++ b/HelloWorld.java
+@@ -8,5 +8,7 @@ class HelloWorld
+     {
+         System.out.println("Hello Hello, World");
+
++        //Adding new line
++        System.out.println("Welcome to Git");
+     }
+ }
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   HelloWorld.java
+
+[root@ip-172-31-90-8 SampleCode]# git reset HEAD HelloWorld.java
+Unstaged changes after reset:
+M       HelloWorld.java
+[root@ip-172-31-90-8 SampleCode]#
+[root@ip-172-31-90-8 SampleCode]# git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   HelloWorld.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[root@ip-172-31-90-8 SampleCode]#
+----------
+
+#git diff
+
+
+Will give us the differences between the modified file in Working area and committed file in local respository
+
+#git diff --staged
+
+Will give us the differences between the modified file in staging area and committed file in local respository
+
+
+
+#git log
+
+Will give the version history
+
+
+Note:HEAD is a virtual pointer that always points to latest commit
+
+To show differences between and latest and latest-1 version changes
+------
+[root@ip-172-31-90-8 SampleCode]# git diff HEAD~1
+diff --git a/HelloWorld.java b/HelloWorld.java
+index 31f484e..d3f16d4 100644
+--- a/HelloWorld.java
++++ b/HelloWorld.java
+@@ -8,5 +8,7 @@ class HelloWorld
+     {
+         System.out.println("Hello Hello, World");
+
++        //Adding new line
++        System.out.println("Welcome to Git");
+     }
+ }
+[root@ip-172-31-90-8 SampleCode]#
+--------
+
+to check content before two commits
+#git diff HEAD~2
+
+
+
+How to commit id's in Git
+#git log --oneline
+
+	
+
+
+
+
+
